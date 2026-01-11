@@ -4,11 +4,12 @@ from streamlit_option_menu import option_menu
 import os
 import time
 import sys
-# Streamlit Cloud doesn't allow webcam; local = Full Mode. Have to use the demo version
-DEMO_MODE = st.runtime.exists() and st.runtime.get_option("server.enableCORS")  # True online
+#Check where the program is running on what platforms (macos,linux,windows,streamlit cloud,etc)
+DEMO_MODE = os.environ.get("STREAMLIT_DEMO", "false").lower() == "true"
+
 try:
     if not DEMO_MODE:
-        from FocusEye import run_detection
+        from FocusEye import run_detection  # real YOLO detection
 except Exception:
     DEMO_MODE = True
 
