@@ -35,11 +35,17 @@ if menu == "Home":
         st.success(f"Focus session started for {focus_time} minutes!")
         alert = st.empty()
 
-        if DEMO_MODE:
-            st.warning("Running in Demo Mode — phone detection is disabled online.")
-            fake_alert = st.button("Simulate phone detection")
-            if fake_alert:
-                alert.warning("📱 Phone detected! Put it away!")
+    if DEMO_MODE:
+        st.warning("Running in Demo Mode — phone detection is disabled online.")
+        # Initialize a session state variable
+    if "simulate_alert" not in st.session_state:
+        st.session_state.simulate_alert = False
+        # Button to simulate detection
+    if st.button("Simulate Phone Detection"):
+        st.session_state.simulate_alert = True
+        # Show alert if session_state is True
+    if st.session_state.simulate_alert:
+        alert.warning("📱 Phone detected! Put it away!")
         else:
             # Run full local detection
             start_time = time.time()
