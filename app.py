@@ -46,7 +46,7 @@ if menu == "Home":
         # Show alert if session_state is True
     if st.session_state.simulate_alert:
         alert.warning("📱 Phone detected! Put it away!")
-        else:
+    else:
             # Run full local detection
             start_time = time.time()
             for phone_detected in run_detection():
