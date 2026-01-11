@@ -2,4 +2,3 @@ streamlit-option-menu
 ultralytics
 opencv-python-headless
 numpy
-libtk8.6
